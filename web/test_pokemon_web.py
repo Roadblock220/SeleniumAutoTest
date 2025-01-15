@@ -17,12 +17,12 @@ def test_positive_login(browser):
 		# ищем по селектору инпут "Email", кликаем по нему и вводим значение email
     email_input = WebDriverWait(browser, timeout=10, poll_frequency=2).until(EC.element_to_be_clickable((By.CSS_SELECTOR, '[class*="f_email"]')))
     email_input.click()
-    email_input.send_keys('PRman99@yandex.ru') # введи тут email своего тестового аккаунта на stage окружении
+    email_input.send_keys('USER EMAIL') # введи тут email своего тестового аккаунта на stage окружении
 		
 		# ищем по селектору инпут "Password", кликаем по нему и вводим значение пароля
     password_input = browser.find_element(by=By.CSS_SELECTOR, value='[class*="f_pass"]')
     password_input.click()
-    password_input.send_keys('Aspirine1309') # введи тут пароль своего тестового аккаунта на stage окружении
+    password_input.send_keys('USER PASSWORD') # введи тут пароль своего тестового аккаунта на stage окружении
 		
 		# ищем по селектору кнопку "Войти" и кликаем по ней
     enter = browser.find_element(by=By.CSS_SELECTOR, value='[class*="send_auth"]')
@@ -38,10 +38,10 @@ def test_positive_login(browser):
     assert trainer_id.text.replace('\n', ': ') == 'ID: 1681', 'Unexpected ID trainer' # введи тут ID своего тренера
 
 CASES = [
-    ('1', 'PRman99yandex.ru', 'Aspirine1309', ['Введите почту', '']),
-    ('2', 'PRman99@yandex.ru', 'Aspirine', ['', 'Неверные логин или пароль']),
-    ('3', '', 'Aspirine1309', ['Введите почту', '']),
-    ('4', 'PRman99@yandex.ru', '', ['', 'Введите пароль']),
+    ('1', 'INVALID_USER_EMAIL', 'VALID_PASSWORD', ['Введите почту', '']),
+    ('2', 'VALID_EMAIL', 'INVALID_PASSWORD', ['', 'Неверные логин или пароль']),
+    ('3', '', 'VALID_PASSWORD', ['Введите почту', '']),
+    ('4', 'VALID_EMAIL', '', ['', 'Введите пароль']),
     ('5', '', '', ['Введите почту', 'Введите пароль'])
 ]
 
